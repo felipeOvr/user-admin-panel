@@ -151,47 +151,7 @@
                       <th>Ações</th>
                     </tr>
                   </thead>
-                  <tbody>
-
-                    <tr>
-                      <td><img src="dist/img/user1-128x128.jpg" alt="User Image" class="img-circle img-sm"></td>
-                      <td>Fulano</td>
-                      <td>fulano@hcode.com.br</td>
-                      <td>Sim</td>
-                      <td>02/04/2018</td>
-                      <td>
-                        <button type="button" class="btn btn-primary btn-xs btn-flat">Editar</button>
-                        <button type="button" class="btn btn-danger btn-xs btn-flat">Excluir</button>
-                      </td>
-                    </tr>
-
-                    <tr>
-                      <td>
-                        <img src="dist/img/user1-128x128.jpg" alt="User Image" class="img-circle img-sm">
-                      </td>
-                      <td>Fulano</td>
-                      <td>fulano@hcode.com.br</td>
-                      <td>Sim</td>
-                      <td>02/04/2018</td>
-                      <td>
-                        <button type="button" class="btn btn-primary btn-xs btn-flat">Editar</button>
-                        <button type="button" class="btn btn-danger btn-xs btn-flat">Excluir</button>
-                      </td>
-                    </tr>
-
-                    <tr>
-                      <td>
-                        <img src="dist/img/user1-128x128.jpg" alt="User Image" class="img-circle img-sm">
-                      </td>
-                      <td>Fulano</td>
-                      <td>fulano@hcode.com.br</td>
-                      <td>Sim</td>
-                      <td>02/04/2018</td>
-                      <td>
-                        <button type="button" class="btn btn-primary btn-xs btn-flat">Editar</button>
-                        <button type="button" class="btn btn-danger btn-xs btn-flat">Excluir</button>
-                      </td>
-                    </tr>
+                  <tbody id="table-users">
 
                   </tbody>
                 </table>
@@ -252,12 +212,12 @@
                     <label>Gênero</label>
                     <div class="radio">
                       <label for="exampleInputGenderM">
-                        <input type="radio" id="exampleInputGenderM" name="gender">
+                        <input type="radio" id="exampleInputGenderM" name="gender" value="M" checked>
                         Masculino</label>
                     </div>
                     <div class="radio">
                       <label for="exampleInputGenderF">
-                        <input type="radio" id="exampleInputGenderF" name="gender">
+                        <input type="radio" id="exampleInputGenderF" name="gender" value="F">
                         Feminino</label>
                     </div>
                   </div>
@@ -563,7 +523,8 @@
 
   </div>
 
-    <script src="./src/Admin.js"></script>
+    <script src="./models/User.js"></script>
+    <script src="./controllers/UserController.js"></script>
     <script src="./src/app.js"></script>
 </body>
 
