@@ -16,26 +16,33 @@ class UserController
 
             let fields = this.getFields ()
 
-            this.getPhoto( photoContent => {
+            this.getPhoto ().then ( photoContent => {
 
                 fields.photo = photoContent
                 this.addLine (fields)
-            })
+
+            }, errors => console.error ( errors ) )
         })
 
     } // submitListener
 
-    getPhoto (callBack)
+    getPhoto ()
     {
-        let fileReader = new FileReader ()
+        return new Promise ( (resolve, reject) => {
 
-        let photoElement = [...this.formEl.elements].filter (item => item.name === 'photo')
+            let fileReader = new FileReader ()
 
-        let photo = photoElement [0].files [0]
+            let photoElement = [...this.formEl.elements].filter (item => item.name === 'photo')
+    
+            let photo = photoElement [0].files [0]
+    
+            fileReader.onload = () => resolve (fileReader.result)
 
-        fileReader.onload = () => callBack (fileReader.result)
+            fileReader.onerror  = error => reject ( error )
+    
+            fileReader.readAsDataURL (photo)
 
-        fileReader.readAsDataURL (photo)
+        } )
     }
 
     getFields ()
