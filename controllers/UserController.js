@@ -39,9 +39,15 @@ class UserController
             fileReader.onload = () => resolve (fileReader.result)
 
             fileReader.onerror  = error => reject ( error )
-    
-            fileReader.readAsDataURL (photo)
 
+            if ( photo )
+            {
+                fileReader.readAsDataURL (photo)
+            }
+            else
+            {
+                resolve ('dist/img/boxed-bg.jpg')
+            }
         } )
     }
 
@@ -54,6 +60,10 @@ class UserController
             if (field.name == "gender")
             {
                 if (field.checked) user[field.name] = field.value
+            }
+            else if ( field.name === 'admin' )
+            {
+                user [ field.name ] = field.checked
             }
             else
             {
@@ -76,18 +86,20 @@ class UserController
 
     addLine (userData)
     {
-        this.tableEl.innerHTML = `<tr>
+        let tr = document.createElement ('tr')
 
-            <td><img src="${ userData.photo }" alt="User Image" class="img-circle img-sm"></td>
-            <td>${ userData.name }</td>
-            <td>${ userData.email }</td>
-            <td>${ userData.admin }</td>
-            <td>${ userData.birth }</td>
-            <td>
-                <button type="button" class="btn btn-primary btn-xs btn-flat">Editar</button>
-                <button type="button" class="btn btn-danger btn-xs btn-flat">Excluir</button>
-            </td>
-        </tr>`
+        tr.innerHTML = `
+        <td><img src="${ userData.photo }" alt="User Image" class="img-circle img-sm"></td>
+        <td>${ userData.name }</td>
+        <td>${ userData.email }</td>
+        <td>${ (userData.admin) ? 'Sim' : 'Não' }</td>
+        <td>${ userData.birth }</td>
+        <td>
+            <button type="button" class="btn btn-primary btn-xs btn-flat">Editar</button>
+            <button type="button" class="btn btn-danger btn-xs btn-flat">Excluir</button>
+        </td>`
+
+        this.tableEl.append (tr)
 
     } // addLine
 }
