@@ -48,9 +48,9 @@ class User
         return this._photo
     }
 
-    get admim ()
+    get admin ()
     {
-        return this._admim
+        return this._admin
     }
 
     get register ()

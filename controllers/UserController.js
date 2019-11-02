@@ -20,6 +20,8 @@ class UserController
 
             let fields = this.getFields ()
 
+            if ( ! fields ) return false
+
             this.getPhoto ().then ( photoContent => {
 
                 fields.photo = photoContent
@@ -107,6 +109,8 @@ class UserController
     {
         let tr = document.createElement ('tr')
 
+        tr.dataset.user = JSON.stringify(userData)
+
         tr.innerHTML = `
         <td><img src="${ userData.photo }" alt="User Image" class="img-circle img-sm"></td>
         <td>${ userData.name }</td>
@@ -120,5 +124,30 @@ class UserController
 
         this.tableEl.append (tr)
 
+        this.updateCount()
+
     } // addLine
+
+    updateCount ()
+    {
+
+        let numberUsers = 0
+        let numberAdmin = 0
+
+        ;[...this.tableEl.children].forEach(row => {
+
+            numberUsers ++
+
+            let user = JSON.parse(row.dataset.user)
+
+            if (user._admin)
+            {
+                numberAdmin ++
+            }
+        })
+
+        document.querySelector ('#numberUsers').innerHTML = numberUsers
+        document.querySelector ('#numberAdmins').innerHTML = numberAdmin
+
+    } // updateCount
 }
