@@ -136,6 +136,22 @@ class UserController
 
             console.log (JSON.parse(tr.dataset.user))
 
+            let jsonDataUser = JSON.parse(tr.dataset.user)
+
+            let form = document.querySelector ('#form-user-update')
+
+            for (let user_data in jsonDataUser)
+            {
+                let field = form.querySelector (`[name=${user_data.replace('_', '')}]`)
+
+                if (field)
+                {
+                    if (field.type === 'file') continue
+
+                    field.value = jsonDataUser[ user_data ]
+                }
+            }
+
             this.showFormUpdate()
 
         })
